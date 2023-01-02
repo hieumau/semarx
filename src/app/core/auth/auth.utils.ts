@@ -153,8 +153,9 @@ export class AuthUtils
      */
     private static _decodeToken(token: string): any
     {
+        console.log(token)
         // Return if there is no token
-        if ( !token )
+        if ( !token || token === 'undefined' || token === 'null')
         {
             return null;
         }
@@ -189,6 +190,9 @@ export class AuthUtils
         // Get the decoded token
         const decodedToken = this._decodeToken(token);
 
+        if (decodedToken == null) {
+            return null
+        }
         // Return if the decodedToken doesn't have an 'exp' field
         if ( !decodedToken.hasOwnProperty('exp') )
         {
