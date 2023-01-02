@@ -6,6 +6,8 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { FuseNavigationService, FuseVerticalNavigationComponent } from '@fuse/components/navigation';
 import { Navigation } from 'app/core/navigation/navigation.types';
 import { NavigationService } from 'app/core/navigation/navigation.service';
+import {FuseConfigService} from "../../../../../@fuse/services/config";
+import {appConfig, AppConfig, Scheme} from "../../../../core/config/app.config";
 
 @Component({
     selector     : 'classic-layout',
@@ -14,6 +16,9 @@ import { NavigationService } from 'app/core/navigation/navigation.service';
 })
 export class ClassicLayoutComponent implements OnInit, OnDestroy
 {
+    config: AppConfig;
+    scheme: 'dark' | 'light';
+
     isScreenSmall: boolean;
     navigation: Navigation;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
@@ -25,10 +30,24 @@ export class ClassicLayoutComponent implements OnInit, OnDestroy
         private _activatedRoute: ActivatedRoute,
         private _router: Router,
         private _navigationService: NavigationService,
+        private _fuseConfigService: FuseConfigService,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _fuseNavigationService: FuseNavigationService
     )
     {
+        this.config = appConfig
+    }
+
+    /**
+     * Set the scheme on the config
+     *
+     * @param scheme
+     */
+    setScheme(scheme: Scheme): void
+    {
+        this._fuseConfigService.config = {scheme};
+        this.config.scheme = scheme
+        console.log(this.config.scheme)
     }
 
     // -----------------------------------------------------------------------------------------------------
