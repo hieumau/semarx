@@ -74,6 +74,7 @@ export const appRoutes: Route[] = [
         },
         children   : [
             {path: 'dashboard', loadChildren: () => import('app/modules/admin/example/example.module').then(m => m.ExampleModule)},
+            {path: 'event', loadChildren: () => import('app/modules/feature/events/events.module').then(m => m.EventsModule)},
         ]
     }
 ];
