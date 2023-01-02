@@ -13,8 +13,8 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 id   : 'dashboard',
                 title: 'Dashboard',
                 type : 'basic',
-                icon : 'heroicons_outline:chart-pie',
-                link : '/example'
+                icon : 'heroicons_outline:view-grid',
+                link : '/dashboard'
             },
         ]
     },
@@ -30,36 +30,36 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 id   : 'features-groups',
                 title: 'Features Groups',
                 type : 'basic',
-                icon : 'heroicons_outline:chart-pie',
-                link : '/example'
+                icon : 'heroicons_outline:map',
+                link : '/feature-group'
             },
             {
                 id   : 'features',
                 title: 'Features',
                 type : 'basic',
-                icon : 'heroicons_outline:chart-pie',
-                link : '/example'
+                icon : 'heroicons_outline:check-circle',
+                link : '/feature'
             },
             {
                 id   : 'events',
                 title: 'Events',
                 type : 'basic',
-                icon : 'heroicons_outline:chart-pie',
-                link : '/example'
+                icon : 'heroicons_outline:calendar',
+                link : '/event'
             },
             {
                 id   : 'default-configuration',
                 title: 'Default Configuration',
                 type : 'basic',
-                icon : 'heroicons_outline:chart-pie',
-                link : '/example'
+                icon : 'heroicons_outline:cog',
+                link : '/default-config'
             },
             {
                 id   : 'object',
                 title: 'Objects',
                 type : 'basic',
-                icon : 'heroicons_outline:chart-pie',
-                link : '/example'
+                icon : 'heroicons_outline:duplicate',
+                link : '/object'
             }
         ]
     },
