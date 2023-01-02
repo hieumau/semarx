@@ -47,8 +47,41 @@
                 <span class="ml-2 mr-1">Import</span>
             </button>
         </div>
-    </div>
 
+    </div>
+    <div class="p-4">
+        <div class="shadow-xl p-4 bg-white">
+            <form class="flex gap-3">
+
+                <mat-form-field class="w-1/4">
+                    <mat-label>Cycle</mat-label>
+                    <input
+                        id="cycle"
+                        matInput>
+                </mat-form-field>
+                <mat-form-field class="w-1/4">
+                    <mat-label>Events</mat-label>
+                    <input
+                        id="events"
+                        matInput>
+                </mat-form-field>
+                <mat-form-field class="w-1/4">
+                    <mat-label>TS</mat-label>
+                    <input
+                        id="ts"
+                        matInput>
+                </mat-form-field>
+                <button
+                    class="mt-7"
+                    mat-flat-button
+                    [color]="'primary'"
+                    (click)="create()">
+                    <span>Add</span>
+                </button>
+            </form>
+        </div>
+
+    </div>
     <!-- Main -->
     <div class="flex flex-auto overflow-hidden">
 
