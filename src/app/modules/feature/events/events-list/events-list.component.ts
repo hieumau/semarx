@@ -7,12 +7,14 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {MatDialog} from "@angular/material/dialog";
 import {Subject} from "rxjs";
 import {takeUntil} from "rxjs/operators";
 import {fuseAnimations} from "../../../../../@fuse/animations";
 import {FuseConfirmationService} from "../../../../../@fuse/services/confirmation";
 import {EventModal} from "../../../../shared/model/event.model";
 import {EventService} from "../../../../shared/service/event.service";
+import {EventEditDialogComponent} from "../event-edit-dialog/event-edit-dialog.component";
 
 @Component({
     selector: 'app-events-list',
@@ -22,7 +24,7 @@ import {EventService} from "../../../../shared/service/event.service";
         /* language=SCSS */
         `
             .system-wallet-grid {
-                grid-template-columns: 35px 25% 25% auto 100px ;
+                grid-template-columns: 35px 25% 25% auto 100px;
             }
         `
     ],
@@ -45,6 +47,7 @@ export class EventsListComponent implements OnInit, OnDestroy {
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _fuseConfirmationService: FuseConfirmationService,
+        private matDialog: MatDialog,
         private _formBuilder: FormBuilder,
         private eventService: EventService
     ) {
@@ -67,6 +70,7 @@ export class EventsListComponent implements OnInit, OnDestroy {
         ).pipe().subscribe(result => {
             this.objectList = result
             this._changeDetectorRef.markForCheck()
+            this.openEditDialog(this.objectList[0])
             this.isLoading = false
         })
     }
@@ -97,38 +101,6 @@ export class EventsListComponent implements OnInit, OnDestroy {
         //     this._changeDetectorRef.markForCheck();
         // });
     }
-
-    /**
-     * Close the details
-     */
-    closeDetails(): void {
-        this.selectedObject = null;
-    }
-
-    /**
-     * Toggle product details
-     *
-     * @param id
-     */
-    toggleDetails(id: number): void {
-        // // If the product is already selected...
-        // if (this.selectedObject && this.selectedObject.id === id) {
-        //     // Close the details
-        //     this.closeDetails();
-        //     return;
-        // }
-        //
-        // // Get the product by id
-        // this.selectedObject = this.objectList.find(c => c.id == id)
-        //
-        // // Fill the form
-        // this.selectedObjectForm.patchValue(this.selectedObject);
-        //
-        // // Mark for check
-        // this._changeDetectorRef.markForCheck();
-    }
-
-
 
     /**
      * Show flash message
@@ -184,5 +156,13 @@ export class EventsListComponent implements OnInit, OnDestroy {
      */
     trackByFn(index: number, item: any): any {
         return item.id || index;
+    }
+
+
+    openEditDialog(object: EventModal) {
+        this.matDialog.open(EventEditDialogComponent, {
+            data: object,
+            width: '500px'
+        })
     }
 }
