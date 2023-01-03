@@ -1,6 +1,6 @@
 import {EventModal} from "../../shared/model/event.model";
 
-export const eventModals: EventModal[] = [
+export const eventList: EventModal[] = [
     {
         cycle: 1,
         event: 'E1',

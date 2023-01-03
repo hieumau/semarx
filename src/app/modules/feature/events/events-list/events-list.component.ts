@@ -23,7 +23,7 @@ import {EventEditDialogComponent} from "../event-edit-dialog/event-edit-dialog.c
     styles: [
         /* language=SCSS */
         `
-            .system-wallet-grid {
+            .event-grid {
                 grid-template-columns: 35px 25% 25% auto 100px;
             }
         `
@@ -72,9 +72,6 @@ export class EventsListComponent implements OnInit, OnDestroy {
             this._changeDetectorRef.markForCheck()
             this.isLoading = false
         })
-    }
-
-    ngAfterViewInit(): void {
     }
 
     ngOnDestroy(): void {
