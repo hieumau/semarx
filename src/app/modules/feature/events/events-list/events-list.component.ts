@@ -70,7 +70,6 @@ export class EventsListComponent implements OnInit, OnDestroy {
         ).pipe().subscribe(result => {
             this.objectList = result
             this._changeDetectorRef.markForCheck()
-            this.openEditDialog(this.objectList[0])
             this.isLoading = false
         })
     }
