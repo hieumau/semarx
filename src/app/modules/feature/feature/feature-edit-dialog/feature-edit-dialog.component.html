@@ -1,0 +1,45 @@
+<div class="relative">
+    <div mat-dialog-close="" class="absolute top-0 right-0 cursor-pointer">
+        <mat-icon>close</mat-icon>
+    </div>
+    <div class="font-bold text-xl">Edit Features</div>
+    <hr class="my-2">
+    <form class="mt-4 gap-2" [formGroup]="form">
+        <mat-form-field class="w-full">
+            <mat-label>Group Name</mat-label>
+            <input
+                formControlName="groupName"
+                id="groupName"
+                matInput>
+        </mat-form-field>
+        <mat-form-field class="w-full">
+            <mat-label>Group Type</mat-label>
+            <input
+                formControlName="groupType"
+                id="groupType"
+                matInput>
+        </mat-form-field>
+        <mat-form-field class="w-full">
+            <mat-label>Features</mat-label>
+            <input
+                formControlName="features"
+                id="features"
+                matInput>
+        </mat-form-field>
+        <mat-form-field class="w-full">
+            <mat-label>Description</mat-label>
+            <input
+                formControlName="description"
+                id="description"
+                matInput>
+        </mat-form-field>
+    </form>
+    <div class="mt-4 flex gap-4">
+        <button mat-flat-button color="primary">
+            Update
+        </button>
+        <button mat-flat-button color="accent" mat-dialog-close>
+            Cancel
+        </button>
+    </div>
+</div>

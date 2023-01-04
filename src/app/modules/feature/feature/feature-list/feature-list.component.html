@@ -1,1 +1,185 @@
-treqwtgwertwre
+<div class="sm:absolute sm:inset-0 flex flex-col flex-auto min-w-0 bg-card dark:bg-transparent">
+
+    <!-- Header -->
+    <div
+        class="relative flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between py-8 px-6 md:px-8 border-b">
+        <!-- Loader -->
+        <div
+            class="absolute inset-x-0 bottom-0"
+            *ngIf="isLoading">
+            <mat-progress-bar [mode]="'indeterminate'"></mat-progress-bar>
+        </div>
+        <!-- Title -->
+        <div class="text-4xl font-extrabold tracking-tight">Features</div>
+        <!-- Actions -->
+        <div class="flex flex-shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+            <button
+                class="ml-4"
+                mat-flat-button
+                [color]="'warn'"
+                (click)="create()">
+                <mat-icon [svgIcon]="'heroicons_outline:trash'"></mat-icon>
+                <span class="ml-2 mr-1">Delete Selected</span>
+            </button>
+            <!-- Add product button -->
+            <button
+                class="ml-4"
+                mat-flat-button
+                [color]="'primary'"
+                (click)="create()">
+                <mat-icon [svgIcon]="'heroicons_outline:document-text'"></mat-icon>
+                <span class="ml-2 mr-1">Export Bulk</span>
+            </button>
+            <button
+                class="ml-4"
+                mat-flat-button
+                [color]="'primary'"
+                (click)="create()">
+                <mat-icon [svgIcon]="'heroicons_outline:document-download'"></mat-icon>
+                <span class="ml-2 mr-1">Export Selected Row</span>
+            </button>
+            <button
+                class="ml-4"
+                mat-flat-button
+                [color]="'primary'"
+                (click)="create()">
+                <mat-icon [svgIcon]="'heroicons_outline:document-add'"></mat-icon>
+                <span class="ml-2 mr-1">Import</span>
+            </button>
+        </div>
+
+    </div>
+    <div class="p-4">
+        <div class="shadow-xl p-4">
+            <form class="flex gap-4">
+                <mat-form-field class="w-full">
+                    <mat-label>Group Name</mat-label>
+                    <input
+                        id="groupName"
+                        matInput>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>Group Type</mat-label>
+                    <input
+                        id="grouType"
+                        matInput>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>Features</mat-label>
+                    <input
+                        id="features"
+                        matInput>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>Description</mat-label>
+                    <input
+                        id="description"
+                        matInput>
+                </mat-form-field>
+                <button
+                    class="mt-7"
+                    mat-flat-button
+                    [color]="'primary'"
+                    (click)="create()">
+                    <span>Add</span>
+                </button>
+            </form>
+        </div>
+
+    </div>
+    <!-- Main -->
+    <div class="flex flex-auto overflow-hidden px-4 ">
+        <!-- Products list -->
+        <div class="flex flex-col flex-auto sm:mb-18 shadow-2xl overflow-auto">
+            <ng-container *ngIf="objectList">
+                <ng-container *ngIf="objectList.length > 0; else noData">
+                    <div class="grid">
+                        <!-- Header -->
+                        <div
+                            class="feature-grid z-10 sticky top-0 grid gap-4 py-4 px-6 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5">
+                            <div></div>
+                            <div>
+                                Group Name
+                            </div>
+                            <div
+                                class="">
+                                Group Type
+                            </div>
+                            <div
+                                class="">
+                                Features
+                            </div>
+                            <div
+                                class="">
+                                Description
+                            </div>
+                            <div>
+                                Action
+                            </div>
+                        </div>
+                        <!-- Rows -->
+                        <ng-container *ngIf="objectList">
+                            <ng-container *ngFor="let feature of objectList; trackBy: trackByFn">
+                                <div class="feature-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
+
+                                    <!-- Checkbox -->
+                                    <div class="flex items-center">
+                                        <mat-checkbox></mat-checkbox>
+                                    </div>
+
+                                    <div class="">
+                                        {{feature.groupName}}
+                                    </div>
+
+                                    <div class="">
+                                        {{feature.groupType}}
+                                    </div>
+
+                                    <div class="">
+                                        {{feature.features}}
+                                    </div>
+                                    <div class="">
+                                        {{feature.description}}
+                                    </div>
+                                    <div class="flex">
+                                        <button
+                                            (click)="openEditDialog(feature)"
+                                            mat-icon-button>
+                                            <mat-icon color="primary"
+                                                      svgIcon="heroicons_outline:pencil"></mat-icon>
+                                        </button>
+                                        <button
+                                            mat-icon-button>
+                                            <mat-icon color="warn"
+                                                      svgIcon="heroicons_outline:trash"></mat-icon>
+                                        </button>
+                                    </div>
+
+
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+
+                    <mat-paginator
+                        class="sm:absolute sm:inset-x-0 sm:bottom-0 border-b sm:border-t sm:border-b-0 z-10 bg-gray-50 dark:bg-transparent"
+                        [ngClass]="{'pointer-events-none': isLoading}"
+                        [length]="100"
+                        [pageIndex]="0"
+                        [pageSize]="20"
+                        [pageSizeOptions]="[5, 10, 25, 100]"
+                        [showFirstLastButtons]="true"></mat-paginator>
+
+                </ng-container>
+            </ng-container>
+
+            <ng-template #noData>
+                <div class="p-8 sm:p-16 border-t text-4xl font-semibold tracking-tight text-center">There are no data!
+                </div>
+            </ng-template>
+
+        </div>
+
+    </div>
+
+</div>

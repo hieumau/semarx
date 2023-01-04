@@ -26,7 +26,7 @@ import {FeatureGroupEditDialogComponent} from "../feature-group-edit-dialog/feat
     styles: [
         /* language=SCSS */
         `
-            .event-grid {
+            .feature-group-grid {
                 grid-template-columns: 35px 25% 25% auto 100px;
             }
         `
