@@ -22,9 +22,9 @@ import {
 import {FeatureEditDialogComponent} from "../feature-edit-dialog/feature-edit-dialog.component";
 
 @Component({
-  selector: 'app-feature-list',
-  templateUrl: './feature-list.component.html',
-  styleUrls: ['./feature-list.component.css'],
+    selector: 'app-feature-list',
+    templateUrl: './feature-list.component.html',
+    styleUrls: ['./feature-list.component.css'],
     styles: [
         /* language=SCSS */
         `
