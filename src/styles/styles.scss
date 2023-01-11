@@ -2,3 +2,65 @@
 /*  @ Import/write your custom styles here.
 /*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
 /* ----------------------------------------------------------------------------------------------------- */
+table, th, td {
+    border: 1px solid #c1ccff;
+    text-align: center;
+}
+
+.text-vertical {
+    //left: calc(50% - 0.5rem);
+    //line-height: 1;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    position: relative;
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    white-space: nowrap;
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: vertical-rl;
+}
+
+.row-text-vertical {
+    td {
+        @extend .text-vertical
+    }
+}
+
+td, th {
+    &.left-thick {
+        border-left: 2px solid #2e69ee;
+    }
+
+    &.right-thick {
+        border-right: 2px solid #2e69ee;
+    }
+
+    &.bottom-thick {
+        border-bottom: 2px solid #2e69ee;
+    }
+
+    &.top-thick {
+        border-top: 2px solid #2e69ee;
+    }
+}
+
+tr {
+    &.selectable-row {
+        td {
+            height: 28px;
+        }
+    }
+}
+
+.selected-cell {
+    background-color: #ededff;
+    color: #3a57e8;
+    font-weight: bold;
+}
+
+
+th {
+    padding: 10px 0 ;
+    font-weight: bolder;
+    background-color: #dae4fd;
+}
