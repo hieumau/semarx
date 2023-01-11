@@ -1,1 +1,262 @@
-<p>default-config-list works!</p>
+<div class="flex flex-col flex-auto min-w-0 bg-card dark:bg-transparent overflow-y-auto">
+
+    <!-- Header -->
+    <div
+        class="relative flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between py-8 px-6 md:px-8 border-b">
+        <!-- Loader -->
+        <div
+            class="absolute inset-x-0 bottom-0"
+            *ngIf="isLoading">
+            <mat-progress-bar [mode]="'indeterminate'"></mat-progress-bar>
+        </div>
+        <!-- Title -->
+        <div class="text-4xl font-extrabold tracking-tight">Default Configuration</div>
+        <!-- Actions -->
+        <div class="flex flex-shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+            <button
+                class="ml-4"
+                mat-flat-button
+                [color]="'primary'">
+                <span class="ml-2 mr-1">Generate Matrix</span>
+            </button>
+            <button
+                class="ml-4"
+                mat-flat-button
+                [color]="'primary'">
+                <span class="ml-2 mr-1">Save</span>
+            </button>
+            <button
+                class="ml-4"
+                mat-flat-button
+                [color]="'accent'">
+                <span class="ml-2 mr-1">Edit</span>
+            </button>
+            <button
+                class="ml-4"
+                mat-flat-button
+                [color]="'warn'">
+                <span class="ml-2 mr-1">Clear</span>
+            </button>
+        </div>
+
+    </div>
+    <!-- Main -->
+    <div class="flex flex-auto px-4 ">
+        <!-- Products list -->
+        <div class="flex flex-col flex-auto shadow-2xl overflow-auto">
+            <table>
+                <thead>
+                <tr>
+                    <th class="right-thick" colspan="3">Events</th>
+                    <th class="right-thick" colspan="2"></th>
+                    <th class="right-thick" [colSpan]="group.featureList.length"
+                        *ngFor="let group of groupList">{{group.name}}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="row-text-vertical font-bold">
+                    <td class="right-thick" colspan="3">
+                        Event UID
+                    </td>
+                    <td>
+                        HR Events
+                    </td>
+                    <td class="right-thick">
+                        Total Ev.
+                    </td>
+                    <ng-container *ngFor="let group of groupList">
+                        <td *ngFor="let feature of group.featureList; let last = last"
+                            [ngClass]="{'right-thick': last}">
+                            {{feature.description}}
+                        </td>
+                    </ng-container>
+                    <td>
+                        Tot.Inter
+                    </td>
+                </tr>
+                <tr>
+                    <td>Cyc</td>
+                    <td>Ev</td>
+                    <td class="right-thick">TS</td>
+                    <td>20</td>
+                    <td class="right-thick">20</td>
+                    <ng-container *ngFor="let group of groupList">
+                        <td *ngFor="let feature of group.featureList; let last = last"
+                            [ngClass]="{'right-thick': last}">
+                            {{0}}
+                        </td>
+                    </ng-container>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="right-thick" rowspan="5" colspan="3">
+
+                    </td>
+                    <td class="right-thick" colspan="2">
+                        Group ID
+                    </td>
+                    <ng-container *ngFor="let group of groupList">
+                        <td *ngFor="let feature of group.featureList; let last = last"
+                            [ngClass]="{'right-thick': last}">
+                            {{group.id}}
+                        </td>
+                    </ng-container>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="right-thick" colspan="2">
+                        Input
+                    </td>
+                    <ng-container *ngFor="let group of groupList">
+                        <td *ngFor="let feature of group.featureList; let last = last"
+                            [ngClass]="{'right-thick': last}">
+                            {{group.type == GROUP_TYPES.Input ? 1 : 0}}
+                        </td>
+                    </ng-container>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="right-thick" colspan="2">
+                        Output
+                    </td>
+                    <ng-container *ngFor="let group of groupList">
+                        <td *ngFor="let feature of group.featureList; let last = last"
+                            [ngClass]="{'right-thick': last}">
+                            {{group.type == GROUP_TYPES.Output ? 1 : 0}}
+                        </td>
+                    </ng-container>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="right-thick" colspan="2">
+                        Action
+                    </td>
+                    <ng-container *ngFor="let group of groupList">
+                        <td *ngFor="let feature of group.featureList; let last = last"
+                            [ngClass]="{'right-thick': last}">
+                            {{group.type == GROUP_TYPES.Action ? 1 : 0}}
+                        </td>
+                    </ng-container>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="right-thick" colspan="2">
+                        Features
+                    </td>
+                    <ng-container *ngFor="let group of groupList">
+                        <td *ngFor="let feature of group.featureList; let last = last"
+                            [ngClass]="{'right-thick': last}">
+                            {{feature.features}}
+                        </td>
+                    </ng-container>
+                    <td>
+
+                    </td>
+                </tr>
+                <ng-container *ngFor="let event of eventList">
+                    <tr class="selectable-row">
+                        <td>
+                            {{event.cycle}}
+                        </td>
+                        <td>
+                            {{event.event}}
+                        </td>
+                        <td class="right-thick">
+                            {{event.ts}}
+                        </td>
+                        <td>1</td>
+                        <td class="right-thick">1</td>
+                        <ng-container *ngFor="let group of groupList">
+                            <td (click)="onCellClick(event, feature)"
+                                class="cursor-pointer"
+                                *ngFor="let feature of group.featureList; let last = last"
+                                [ngClass]="{'right-thick': last}">
+                                <div *ngIf="feature.selectedEventId">
+                                    <div class="selected-cell shadow"
+                                         *ngIf="feature.selectedEventId.includes(event.id); else elseBlock">
+                                        1
+                                    </div>
+                                    <ng-template #elseBlock>
+                                        <div class="">
+
+                                        </div>
+                                    </ng-template>
+
+                                </div>
+                            </td>
+                        </ng-container>
+                        <td>
+
+                        </td>
+                    </tr>
+                </ng-container>
+                <ng-container>
+                    <tr>
+                        <td class="right-thick font-bold" colspan="5">
+                            Total Used Feature
+                        </td>
+                        <ng-container *ngFor="let group of groupList">
+                            <td *ngFor="let feature of group.featureList; let last = last"
+                                [ngClass]="{'right-thick': last}">
+                                {{0}}
+                            </td>
+                        </ng-container>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td class="right-thick font-bold" colspan="5">
+                            HR Interactions
+                        </td>
+                        <ng-container *ngFor="let group of groupList">
+                            <td *ngFor="let feature of group.featureList; let last = last"
+                                [ngClass]="{'right-thick': last}">
+                                {{0}}
+                            </td>
+                        </ng-container>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td class="right-thick font-bold" colspan="5">
+                            Low Risk Interactions
+                        </td>
+                        <ng-container *ngFor="let group of groupList">
+                            <td *ngFor="let feature of group.featureList; let last = last"
+                                [ngClass]="{'right-thick': last}">
+                                {{0}}
+                            </td>
+                        </ng-container>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="right-thick font-bold" colspan="5">
+                            Total Interaction
+                        </td>
+                        <ng-container *ngFor="let group of groupList">
+                            <td *ngFor="let feature of group.featureList; let last = last"
+                                [ngClass]="{'right-thick': last}">
+                                {{0}}
+                            </td>
+                        </ng-container>
+                        <td></td>
+
+                    </tr>
+                </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

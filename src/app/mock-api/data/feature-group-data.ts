@@ -3,32 +3,32 @@ import {FeatureGroup, GroupType} from "../../shared/model/feature-group.model";
 export const featureGroupList: FeatureGroup[] = [
     {
         id: 'G1',
-        name:'aa',
+        name:'Object Move',
         type: GroupType.Input,
     },
     {
         id: 'G2',
-        name:'aa',
-        type: GroupType.Input,
+        name:'Object Shape',
+        type: GroupType.Output,
     },
     {
         id: 'G3',
-        name:'aa',
+        name:'Object Color',
         type: GroupType.Input,
     },
     {
         id: 'G4',
-        name:'aa',
-        type: GroupType.Input,
+        name:'Object Texture',
+        type: GroupType.Output,
     },
     {
         id: 'G5',
-        name:'aa',
+        name:'Object Size',
         type: GroupType.Input,
     },
     {
         id: 'G6',
-        name:'aa',
-        type: GroupType.Input,
+        name:'Object Time',
+        type: GroupType.Action,
     },
 ]
