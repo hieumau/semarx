@@ -7,9 +7,11 @@ import {FuseConfirmationService} from "../../../../@fuse/services/confirmation";
 import {EventModal} from "../../../shared/model/event.model";
 import {FeatureGroup, GroupType} from "../../../shared/model/feature-group.model";
 import {Feature} from "../../../shared/model/feature.model";
+import {Object} from "../../../shared/model/object.model";
 import {EventService} from "../../../shared/service/event.service";
 import {FeatureGroupService} from "../../../shared/service/feature-group.service";
 import {FeatureService} from "../../../shared/service/feature.service";
+import {ObjectService} from "../../../shared/service/object.service";
 import {
     FeatureGroupEditDialogComponent
 } from "../feature-group/feature-group-edit-dialog/feature-group-edit-dialog.component";
@@ -26,7 +28,11 @@ export class DashboardComponent implements OnInit {
     selectedObjectForm: FormGroup;
     flashMessage: 'success' | 'error' | null = null;
 
-    objectList: FeatureGroup[]
+    objectList: Object[]
+    objectNameList: string[] = ['Banana', 'Apple', 'Rabbit', 'Cat']
+    objectVerticalFeatures: Feature[] = []
+    objectHorizonFeatures: Feature[] = []
+
     isLoading = false
 
     groupList: FeatureGroup[]
@@ -43,6 +49,7 @@ export class DashboardComponent implements OnInit {
         private featureGroupService: FeatureGroupService,
         private featureService: FeatureService,
         private eventService: EventService,
+        private objectService: ObjectService,
     ) {
         this.isLoading = true
 
@@ -81,6 +88,21 @@ export class DashboardComponent implements OnInit {
             this.isLoading = false
         })
 
+
+        this.objectService.getList().pipe(
+            takeUntil(this._unsubscribeAll)
+        ).pipe().subscribe(result => {
+            this.objectList = result
+            this.objectVerticalFeatures = []
+            this.objectVerticalFeatures.push(this.featureList[0])
+            this.objectVerticalFeatures.push(this.featureList[3])
+            this.objectVerticalFeatures.push(this.featureList[6])
+            this.objectHorizonFeatures.push(this.featureList[10])
+            this.objectHorizonFeatures.push(this.featureList[12])
+            this.objectHorizonFeatures.push(this.featureList[14])
+            this._changeDetectorRef.markForCheck()
+            this.isLoading = false
+        })
 
     }
 

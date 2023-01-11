@@ -29,10 +29,64 @@
 
     </div>
     <!-- Main -->
-    <div class="flex flex-auto px-4 ">
+    <div class=" px-4 ">
         <!-- Object Table -->
-        <div class="flex flex-col flex-auto shadow-2xl overflow-auto">
+        <div class="flex shadow-xl">
+            <table>
+                <thead>
+                <tr>
+                    <th>
+                        List of Objects
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container *ngFor="let object of objectNameList">
+                    <tr>
+                        <td class="font-bold">
+                            {{object}}
+                        </td>
+                    </tr>
+                </ng-container>
+                </tbody>
+            </table>
+            <table class="flex-grow w-100">
+                <thead>
+                <tr>
+                    <th colspan="2">
+                        <br>
+                    </th>
 
+                    <ng-container *ngFor="let feature of objectHorizonFeatures">
+                        <th>
+                            {{feature.groupName}}
+                        </th>
+                    </ng-container>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <ng-container *ngFor="let feature of objectHorizonFeatures">
+                        <td>
+                            {{feature.description}}
+                        </td>
+                    </ng-container>
+                </tr>
+                <ng-container *ngFor="let feature of objectVerticalFeatures">
+                    <tr>
+                        <td class="font-bold">{{feature.groupName}}</td>
+                        <td>{{feature.description}}</td>
+                        <ng-container *ngFor="let feature of objectHorizonFeatures">
+                            <td>
+
+                            </td>
+                        </ng-container>
+                    </tr>
+                </ng-container>
+                </tbody>
+            </table>
         </div>
     </div>
 
