@@ -31,11 +31,11 @@
     <!-- Main -->
     <div class=" px-4 ">
         <!-- Object Table -->
-        <div class="flex shadow-xl">
+        <div class="flex shadow-xl object-table">
             <table>
                 <thead>
                 <tr>
-                    <th>
+                    <th class="right-thick">
                         List of Objects
                     </th>
                 </tr>
@@ -43,7 +43,7 @@
                 <tbody>
                 <ng-container *ngFor="let object of objectNameList">
                     <tr>
-                        <td class="font-bold">
+                        <td class="font-bold right-thick">
                             {{object}}
                         </td>
                     </tr>
@@ -53,7 +53,7 @@
             <table class="flex-grow w-100">
                 <thead>
                 <tr>
-                    <th colspan="2">
+                    <th class="right-thick" colspan="2">
                         <br>
                     </th>
 
@@ -67,7 +67,7 @@
                 <tbody>
                 <tr>
                     <td></td>
-                    <td></td>
+                    <td class="right-thick"></td>
                     <ng-container *ngFor="let feature of objectHorizonFeatures">
                         <td>
                             {{feature.description}}
@@ -77,7 +77,7 @@
                 <ng-container *ngFor="let feature of objectVerticalFeatures">
                     <tr>
                         <td class="font-bold">{{feature.groupName}}</td>
-                        <td>{{feature.description}}</td>
+                        <td class="right-thick">{{feature.description}}</td>
                         <ng-container *ngFor="let feature of objectHorizonFeatures">
                             <td>
 
