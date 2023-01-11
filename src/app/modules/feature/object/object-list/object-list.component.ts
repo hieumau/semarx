@@ -10,6 +10,7 @@ import {Object} from "../../../../shared/model/object.model";
 import {FeatureService} from "../../../../shared/service/feature.service";
 import {ObjectService} from "../../../../shared/service/object.service";
 import {FeatureEditDialogComponent} from "../../feature/feature-edit-dialog/feature-edit-dialog.component";
+import {ObjectFormDialogComponent} from "../object-form-dialog/object-form-dialog.component";
 
 @Component({
     selector: 'app-object-list',
@@ -148,8 +149,8 @@ export class ObjectListComponent implements OnInit {
     }
 
 
-    openEditDialog(object: Object) {
-        this.matDialog.open(FeatureEditDialogComponent, {
+    openEditDialog(object?: Object) {
+        this.matDialog.open(ObjectFormDialogComponent, {
             data: object,
             width: '500px'
         })
