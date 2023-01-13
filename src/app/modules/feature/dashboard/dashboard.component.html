@@ -31,63 +31,185 @@
     <!-- Main -->
     <div class=" px-4 ">
         <!-- Object Table -->
-        <div class="flex shadow-xl object-table">
-            <table>
-                <thead>
-                <tr>
-                    <th class="right-thick">
-                        List of Objects
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <ng-container *ngFor="let object of objectNameList">
+        <div class="section__wrapper shadow-xl">
+            <div class="flex  object-table">
+                <table>
+                    <thead>
                     <tr>
-                        <td class="font-bold right-thick">
-                            {{object}}
-                        </td>
-                    </tr>
-                </ng-container>
-                </tbody>
-            </table>
-            <table class="flex-grow w-100">
-                <thead>
-                <tr>
-                    <th class="right-thick" colspan="2">
-                        <br>
-                    </th>
-
-                    <ng-container *ngFor="let feature of objectHorizonFeatures">
-                        <th>
-                            {{feature.groupName}}
+                        <th class="right-thick">
+                            List of Objects
                         </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <ng-container *ngFor="let object of objectNameList">
+                        <tr>
+                            <td class="font-bold right-thick">
+                                {{object}}
+                            </td>
+                        </tr>
                     </ng-container>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td></td>
-                    <td class="right-thick"></td>
-                    <ng-container *ngFor="let feature of objectHorizonFeatures">
-                        <td>
-                            {{feature.description}}
-                        </td>
-                    </ng-container>
-                </tr>
-                <ng-container *ngFor="let feature of objectVerticalFeatures">
+                    </tbody>
+                </table>
+                <table class="flex-grow w-100">
+                    <thead>
                     <tr>
-                        <td class="font-bold">{{feature.groupName}}</td>
-                        <td class="right-thick">{{feature.description}}</td>
+                        <th class="right-thick" colspan="2">
+                            <br>
+                        </th>
+
+                        <ng-container *ngFor="let feature of objectHorizonFeatures">
+                            <th>
+                                {{feature.groupName}}
+                            </th>
+                        </ng-container>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td></td>
+                        <td class="right-thick"></td>
                         <ng-container *ngFor="let feature of objectHorizonFeatures">
                             <td>
-
+                                {{feature.description}}
                             </td>
                         </ng-container>
                     </tr>
-                </ng-container>
-                </tbody>
-            </table>
+                    <ng-container *ngFor="let feature of objectVerticalFeatures">
+                        <tr>
+                            <td class="font-bold">{{feature.groupName}}</td>
+                            <td class="right-thick">{{feature.description}}</td>
+                            <ng-container *ngFor="let feature of objectHorizonFeatures">
+                                <td>
+
+                                </td>
+                            </ng-container>
+                        </tr>
+                    </ng-container>
+                    </tbody>
+                </table>
+            </div>
         </div>
+
+        <!-- Info map table-->
+        <div class="section__wrapper shadow-xl mt-15">
+            <div class="flex  info-map-table">
+                <table class="flex-grow w-100">
+                    <thead>
+                    <tr>
+                        <th class="right-thick" colspan="6">
+                            <br>
+                        </th>
+
+                        <ng-container *ngFor="let group of horizonGroups">
+                            <th [colSpan]="group.featureList.length" class="right-thick">
+                                {{group.name}}
+                            </th>
+                        </ng-container>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td rowspan="3" colspan="6" class="right-thick" style="border-bottom: hidden!important;"></td>
+                        <ng-container *ngFor="let group of horizonGroups">
+                            <ng-container *ngFor="let feature of group.featureList; let last = last">
+                                <td class="text-vertical bottom-thick"
+                                    [ngClass]="{'right-thick': last}">
+                                    {{feature.description}}
+                                </td>
+                            </ng-container>
+                        </ng-container>
+                    </tr>
+                    <tr>
+                        <ng-container *ngFor="let group of horizonGroups">
+                            <ng-container *ngFor="let feature of group.featureList; let last = last">
+                                <td class=""
+                                    [ngClass]="{'right-thick': last}">
+                                    {{group.id}}
+                                </td>
+                            </ng-container>
+                        </ng-container>
+                    </tr>
+                    <tr>
+                        <ng-container *ngFor="let group of horizonGroups">
+                            <ng-container *ngFor="let feature of group.featureList; let last = last">
+                                <td class=""
+                                    [ngClass]="{'right-thick': last}">
+                                    {{feature.features}}
+                                </td>
+                            </ng-container>
+                        </ng-container>
+                    </tr>
+                    <tr>
+                        <td colspan="4" rowspan="2" style="border-top: hidden!important;">
+
+                        </td>
+                        <td rowspan="2" class="text-vertical bg-black text-white">
+                            P(HR)Atr)
+                        </td>
+                        <td rowspan="2" class="text-vertical bg-black text-white right-thick">
+                            I
+                        </td>
+                        <ng-container *ngFor="let group of horizonGroups">
+                            <ng-container *ngFor="let feature of group.featureList; let last = last">
+                                <td class=""
+                                    [ngClass]="{'right-thick': last}">
+                                    <app-table-cell-progress-background [number]="getRandomNumber()">
+                                    </app-table-cell-progress-background>
+                                </td>
+                            </ng-container>
+                        </ng-container>
+                    </tr>
+                    <tr>
+                        <ng-container *ngFor="let group of horizonGroups">
+                            <ng-container *ngFor="let feature of group.featureList; let last = last">
+                                <td class=""
+                                    [ngClass]="{'right-thick': last}">
+                                    {{getRandomNumber()}}                             </td>
+                            </ng-container>
+                        </ng-container>
+                    </tr>
+
+                    <ng-container *ngFor="let group of verticalGroups">
+                        <ng-container *ngFor="let feature of group.featureList; let last = last; let first = first">
+                            <tr>
+                                <td *ngIf="first" [rowSpan]="group.featureList.length" class="right-thick font-bold">
+                                    {{group.name}}
+                                </td>
+                                <td class="right-thick">
+                                    {{feature.description}}
+                                </td>
+                                <td class="">
+                                    {{group.id}}
+                                </td>
+                                <td class="right-thick">
+                                    {{feature.features}}
+                                </td>
+                                <td>
+                                    <app-table-cell-progress-background [number]="getRandomNumber()">
+                                    </app-table-cell-progress-background>
+                                </td>
+                                <td class="right-thick">
+                                    <app-table-cell-progress-background [number]="getRandomNumber()">
+                                    </app-table-cell-progress-background>
+                                </td>
+                                <ng-container *ngFor="let group of horizonGroups">
+                                    <ng-container *ngFor="let feature of group.featureList; let last = last">
+                                        <td class=""
+                                            [ngClass]="{'right-thick': last}">
+                                            {{getRandomNumber()}}
+                                        </td>
+                                    </ng-container>
+                                </ng-container>
+                            </tr>
+                        </ng-container>
+
+                    </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 
 </div>

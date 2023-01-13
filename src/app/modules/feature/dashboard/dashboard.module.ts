@@ -5,11 +5,13 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
+import { TableCellProgressBackgroundComponent } from './table-cell-progess-backgroud/table-cell-progress-background.component';
 
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    TableCellProgressBackgroundComponent
   ],
     imports: [
         CommonModule,

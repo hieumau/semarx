@@ -39,6 +39,9 @@ export class DashboardComponent implements OnInit {
     featureList: Feature[]
     eventList: EventModal[]
 
+    horizonGroups: FeatureGroup[] = []
+    verticalGroups: FeatureGroup[] = []
+
     GROUP_TYPES = GroupType
 
     constructor(
@@ -123,7 +126,19 @@ export class DashboardComponent implements OnInit {
 
         // remove group not have feature
         this.groupList = this.groupList.filter(g => g.featureList.length > 0)
+
+        this.horizonGroups = []
+        this.verticalGroups = []
+
+        this.horizonGroups.push(this.groupList[0])
+        this.horizonGroups.push(this.groupList[1])
+        this.horizonGroups.push(this.groupList[2])
+        this.verticalGroups.push(this.groupList[3])
+        this.verticalGroups.push(this.groupList[4])
+        this.verticalGroups.push(this.groupList[5])
     }
 
-
+    getRandomNumber(): number {
+        return Math.round(Math.random() * 1000) / 1000
+    }
 }
