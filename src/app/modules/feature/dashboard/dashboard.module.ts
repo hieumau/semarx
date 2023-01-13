@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {NgApexchartsModule} from "ng-apexcharts";
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
@@ -20,6 +21,7 @@ import { TableCellProgressBackgroundComponent } from './table-cell-progess-backg
         MatProgressBarModule,
         MatButtonModule,
         MatIconModule,
+        NgApexchartsModule
     ]
 })
 export class DashboardModule { }

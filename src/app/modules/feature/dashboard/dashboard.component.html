@@ -33,11 +33,19 @@
     <!-- Main -->
     <div class=" px-4 ">
         <!-- Chart Table -->
-
         <div class="section__wrapper shadow-xl mb-15">
             <h2 class="text-3xl font-bold m-3 ml-6">Chart</h2>
-            <div class="flex ">
-
+            <div class="w-full" id="chart">
+                <apx-chart
+                    [series]="chartOptions.series"
+                    [chart]="chartOptions.chart"
+                    [dataLabels]="chartOptions.dataLabels"
+                    [plotOptions]="chartOptions.plotOptions"
+                    [responsive]="chartOptions.responsive"
+                    [xaxis]="chartOptions.xaxis"
+                    [legend]="chartOptions.legend"
+                    [fill]="chartOptions.fill"
+                ></apx-chart>
             </div>
         </div>
 
@@ -103,7 +111,7 @@
         </div>
 
         <!-- Info map table-->
-        <div class="section__wrapper shadow-xl mt-15">
+        <div class="section__wrapper shadow-xl mb-15">
             <div class="flex  info-map-table">
                 <table class="flex-grow w-100">
                     <thead>

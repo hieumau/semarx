@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {Subject} from "rxjs";
@@ -12,9 +12,29 @@ import {EventService} from "../../../shared/service/event.service";
 import {FeatureGroupService} from "../../../shared/service/feature-group.service";
 import {FeatureService} from "../../../shared/service/feature.service";
 import {ObjectService} from "../../../shared/service/object.service";
+
 import {
-    FeatureGroupEditDialogComponent
-} from "../feature-group/feature-group-edit-dialog/feature-group-edit-dialog.component";
+    ApexAxisChartSeries,
+    ApexChart,
+    ChartComponent,
+    ApexDataLabels,
+    ApexPlotOptions,
+    ApexResponsive,
+    ApexXAxis,
+    ApexLegend,
+    ApexFill
+} from "ng-apexcharts";
+
+export type ChartOptions = {
+    series: ApexAxisChartSeries;
+    chart: ApexChart;
+    dataLabels: ApexDataLabels;
+    plotOptions: ApexPlotOptions;
+    responsive: ApexResponsive[];
+    xaxis: ApexXAxis;
+    legend: ApexLegend;
+    fill: ApexFill;
+};
 
 @Component({
     selector: 'app-dashboard',
@@ -43,6 +63,10 @@ export class DashboardComponent implements OnInit {
     verticalGroups: FeatureGroup[] = []
 
     GROUP_TYPES = GroupType
+
+
+    @ViewChild("chart") chart: ChartComponent;
+    public chartOptions: Partial<ChartOptions>;
 
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
@@ -107,6 +131,95 @@ export class DashboardComponent implements OnInit {
             this.isLoading = false
         })
 
+
+        this.chartOptions = {
+            dataLabels: {
+              enabled: false
+            },
+            series: [
+                {
+                    name: "PRODUCT A",
+                    data: [44, 55, 41, 67, 22, 43, 10, 20, 40, 23, 43, 23, 54, 34, 54, 54, 43, 10, 20, 55, 41, 67]
+                },
+                {
+                    name: "PRODUCT B",
+                    data: [13, 23, 20, 8, 13, 27, 32, 20, 34, 21, 54, 67, 22, 43, 10, 20, 55, 41, 67, 22, 43, 10]
+                },
+                {
+                    name: "PRODUCT C",
+                    data: [11, 17, 15, 15, 21, 14, 30, 22, 34, 22, 54, 13, 27, 32, 20, 34, 13, 27, 32, 20, 34, 21]
+                },
+            ],
+            chart: {
+                type: "bar",
+                height: 350,
+                stacked: true,
+                toolbar: {
+                    show: true
+                },
+                zoom: {
+                    enabled: true
+                },
+            },
+            responsive: [
+                {
+                    breakpoint: 480,
+                    options: {
+                        legend: {
+                            position: "bottom",
+                            offsetX: -10,
+                            offsetY: 0
+                        }
+                    }
+                }
+            ],
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    dataLabels: {
+
+                    },
+                    borderRadius: 10,
+                },
+
+            },
+            xaxis: {
+                type: "category",
+                categories: [
+                    "Round",
+                    "Long",
+                    "Flat",
+                    "Flat",
+                    "Red",
+                    "Red",
+                    "Red",
+                    "Yellow",
+                    "Yellow",
+                    "Yellow",
+                    "Green",
+                    "Green",
+                    "Green",
+                    "Green",
+                    "Green",
+                    "Round",
+                    "Round",
+                    "Round",
+                    "Round",
+                    "Round",
+                    "Round",
+                    "Round",
+                ]
+            },
+            legend: {
+                show: false,
+                position: "right",
+                offsetY: 40
+            },
+            fill: {
+                opacity: 1,
+                colors: ['#1433cc', '#7189ff', '#bcc7ff']
+            }
+        };
     }
 
     ngOnInit(): void {
