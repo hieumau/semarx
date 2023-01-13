@@ -17,12 +17,14 @@
                 class="ml-4"
                 mat-flat-button
                 [color]="'primary'">
+                <mat-icon svgIcon="heroicons_outline:presentation-chart-line"></mat-icon>
                 <span class="ml-2 mr-1">Generate Info Map</span>
             </button>
             <button
                 class="ml-4"
                 mat-flat-button
                 [color]="'primary'">
+                <mat-icon svgIcon="heroicons_outline:information-circle"></mat-icon>
                 <span class="ml-2 mr-1">Bayes Information</span>
             </button>
         </div>
@@ -30,8 +32,17 @@
     </div>
     <!-- Main -->
     <div class=" px-4 ">
+        <!-- Chart Table -->
+
+        <div class="section__wrapper shadow-xl mb-15">
+            <h2 class="text-3xl font-bold m-3 ml-6">Chart</h2>
+            <div class="flex ">
+
+            </div>
+        </div>
+
         <!-- Object Table -->
-        <div class="section__wrapper shadow-xl">
+        <div class="section__wrapper shadow-xl mb-15">
             <div class="flex  object-table">
                 <table>
                     <thead>
@@ -165,7 +176,8 @@
                             <ng-container *ngFor="let feature of group.featureList; let last = last">
                                 <td class=""
                                     [ngClass]="{'right-thick': last}">
-                                    {{getRandomNumber()}}                             </td>
+                                    {{getRandomNumber()}}
+                                </td>
                             </ng-container>
                         </ng-container>
                     </tr>
